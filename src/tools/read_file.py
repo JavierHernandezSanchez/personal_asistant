@@ -1,4 +1,6 @@
 from tool import Tool
+from pathlib import Path
+
 class ReadFileTool(Tool):
     """
     Reads the content of a specified file.
@@ -10,11 +12,16 @@ class ReadFileTool(Tool):
 
     name = "read_file"
     description = "Reads the content of a specified file."
+    usage = "read_file <file_path>"
     
-    def execute(self, file_path):
-        try:
-            with open(file_path, 'r') as file:
-                content = file.read()
-            return content
-        except Exception as e:
-            return f"Error reading file: {e}"
+    def execute(self, file_path: str) -> str:
+        path = Path(file_path)
+
+        if not path.exists():            
+            raise FileNotFoundError(f"File '{file_path}' does not exist.")
+        
+        if not path.is_file():
+            raise IsADirectoryError(f"'{file_path}' is not a file.")        
+
+        return path.read_text(encoding="utf-8")
+        
