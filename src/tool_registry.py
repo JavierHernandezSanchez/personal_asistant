@@ -1,4 +1,4 @@
-from tool import Tool
+from src.tool import Tool
 class ToolRegistry:
     """
     Stores and provides access to the tools available to the assistant.

@@ -1,4 +1,4 @@
-from tool import Tool
+from src.tool import Tool
 from pathlib import Path
 
 class WriteFileTool(Tool):
