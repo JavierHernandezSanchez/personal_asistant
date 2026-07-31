@@ -6,7 +6,11 @@ class ListDirectoryTool(Tool):
     description = "Lists the contents of a specified directory."
     usage = "list_directory <directory_path>"
     
-    def execute(self, directory_path: str) -> str:
+    def execute(self, arguments: list[str]) -> str:
+        if len(arguments) != 1:
+            raise ValueError("Exactly one argument (directory_path) is required.")
+        
+        directory_path = arguments[0]
         path = Path(directory_path)
         if not path.exists():
             raise FileNotFoundError(f"Directory '{directory_path}' does not exist.")

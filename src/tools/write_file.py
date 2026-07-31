@@ -13,7 +13,12 @@ class WriteFileTool(Tool):
     description = "Writes content to a specified file."
     usage = "write_file <file_path> <content>"
     
-    def execute(self, file_path: str, content: str) -> str:
+    def execute(self, arguments: list[str]) -> str:
+        if len(arguments) != 2:
+            raise ValueError("Exactly two arguments (file_path and content) are required.")
+
+        file_path = arguments[0]
+        content = arguments[1]
         path = Path(file_path)
 
         if not path.parent.exists():

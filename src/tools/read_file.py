@@ -14,7 +14,11 @@ class ReadFileTool(Tool):
     description = "Reads the content of a specified file."
     usage = "read_file <file_path>"
     
-    def execute(self, file_path: str) -> str:
+    def execute(self, arguments: list[str]) -> str:
+        if len(arguments) != 1:
+            raise ValueError("Exactly one argument (file_path) is required.")
+        
+        file_path = arguments[0]
         path = Path(file_path)
 
         if not path.exists():            
