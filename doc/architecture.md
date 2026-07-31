@@ -24,6 +24,9 @@ si el asistente hace algo debe ser capaz de responder por qué lo hizo. Se regis
 ### 1. La memoria pertenece al asitente, no al modelo
 no dependemos de la ventana de contexto para recorar cosas importantes.
 
+### 1. Librerías
+Todas las rutas se manipulan con pathlib.Path solo se convierte a str en los límites de la aplicación.
+
 ## 3. Grandes módulos
 
 * Usuario
