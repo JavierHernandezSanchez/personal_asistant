@@ -1,6 +1,6 @@
-import shlex
 from src.command import Command
 from src.tool_registry import ToolRegistry
+from src.planner import Planner
 
 class Agent():
     """
@@ -8,19 +8,9 @@ class Agent():
     It acts as a mediator between the user and the tools, deciding which tool to use based on the input.
     """
     
-    def __init__(self, registry: ToolRegistry):
+    def __init__(self, registry: ToolRegistry, planner: Planner):
         self.tool_registry = registry
-
-    def _parse_input(self, text: str) -> Command:
-        """
-        Parses the input text and returns a command and its arguments.
-        """
-        tokens = shlex.split(text)
-        if not tokens:
-            return Command(tool_name=None, arguments=[])
-        command, *args = tokens
-        
-        return Command(tool_name=command, arguments=args)
+        self.planner = planner
 
     def _show_help(self):
         """
@@ -34,9 +24,10 @@ class Agent():
             print(f"    Usage: {tool.usage}")
 
     def run(self):
+        planner = Planner()
         while True:
             text = input("> ")
-            command = self._parse_input(text)            
+            command = self.planner.plan(text)
 
             if command.tool_name == "help":
                 self._show_help()
