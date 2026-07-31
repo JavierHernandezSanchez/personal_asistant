@@ -5,6 +5,7 @@ from .tools.current_directory import CurrentDirectoryTool
 from .tools.change_directory import ChangeDirectoryTool
 from .tools.write_file import WriteFileTool
 from .tools.delete_file import DeleteFileTool
+from .tools.create_directory import CreateDirectoryTool 
 from .planner import Planner
 from .agent import Agent
 
@@ -16,6 +17,7 @@ def main():
     registry.register(WriteFileTool())
     registry.register(CurrentDirectoryTool())
     registry.register(ChangeDirectoryTool())
+    registry.register(CreateDirectoryTool())
     registry.register(DeleteFileTool())
 
     planner = Planner()

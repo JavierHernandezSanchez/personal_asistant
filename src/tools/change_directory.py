@@ -18,7 +18,7 @@ class ChangeDirectoryTool(Tool):
         if len(arguments) != 1:
             raise ValueError("Exactly one argument (the target directory) is required.")
         
-        path = Path(arguments[0]).resolve()
+        path = Path(arguments[0])
 
         if not path.exists():
             raise FileNotFoundError(f"The specified path does not exist: {path}")

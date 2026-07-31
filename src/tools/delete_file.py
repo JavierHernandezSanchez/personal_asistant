@@ -11,7 +11,7 @@ class DeleteFileTool(Tool):
         if len(arguments) != 1:
             raise ValueError("Exactly one argument (file_path) is required.")
 
-        path = Path(arguments[0]).resolve()
+        path = Path(arguments[0])
         if not path.exists():
             raise FileNotFoundError(f"File '{path}' does not exist.")
         if not path.is_file():
